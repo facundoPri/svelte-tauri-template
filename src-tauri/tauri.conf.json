@@ -12,18 +12,19 @@
   "app": {
     "windows": [
       {
-        "label": "main",
+        "label": "panel",
         "fullscreen": false,
         "height": 400,
         "width": 400,
         "resizable": false,
         "decorations": false,
-        "titleBarStyle": "Overlay",
         "center": true,
-        "visible": false
+        "visible": false,
+        "acceptFirstMouse": true,
+        "url": "/panel"
       },
       {
-        "label": "settings",
+        "label": "main",
         "fullscreen": false,
         "height": 600,
         "width": 600,

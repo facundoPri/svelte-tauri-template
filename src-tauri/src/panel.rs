@@ -21,13 +21,13 @@ enum Error {
 }
 
 pub trait WebviewWindowExt {
-    fn to_spotlight_panel(&self) -> tauri::Result<Panel>;
+    fn to_floating_panel(&self) -> tauri::Result<Panel>;
 
     fn center_at_cursor_monitor(&self) -> tauri::Result<()>;
 }
 
 impl<R: Runtime> WebviewWindowExt for WebviewWindow<R> {
-    fn to_spotlight_panel(&self) -> tauri::Result<Panel> {
+    fn to_floating_panel(&self) -> tauri::Result<Panel> {
         // Convert window to panel
         let panel = self
             .to_panel()
@@ -77,7 +77,7 @@ impl<R: Runtime> WebviewWindowExt for WebviewWindow<R> {
         }
 
         #[allow(unexpected_cfgs)]
-        let panel_delegate = panel_delegate!(SpotlightPanelDelegate {
+        let panel_delegate = panel_delegate!(FloatingPanelDelegate {
             window_did_resign_key,
             window_did_become_key
         });

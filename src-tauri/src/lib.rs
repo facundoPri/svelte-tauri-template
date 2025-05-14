@@ -6,7 +6,7 @@ use tauri_plugin_global_shortcut::{Code, Modifiers, Shortcut, ShortcutState};
 mod command;
 mod panel;
 
-pub const SPOTLIGHT_LABEL: &str = "main";
+pub const PANEL_LABEL: &str = "panel";
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
@@ -25,9 +25,9 @@ pub fn run() {
         .setup(move |app| {
             let handle = app.app_handle();
 
-            let window = handle.get_webview_window(SPOTLIGHT_LABEL).unwrap();
+            let window = handle.get_webview_window(PANEL_LABEL).unwrap();
 
-            let _ = window.to_spotlight_panel()?;
+            let _ = window.to_floating_panel()?;
 
             Ok(())
         })
@@ -39,9 +39,9 @@ pub fn run() {
                     if event.state == ShortcutState::Pressed
                         && shortcut.matches(Modifiers::ALT, Code::Space)
                     {
-                        let window = app.get_webview_window(SPOTLIGHT_LABEL).unwrap();
+                        let window = app.get_webview_window(PANEL_LABEL).unwrap();
 
-                        let panel = app.get_webview_panel(SPOTLIGHT_LABEL).unwrap();
+                        let panel = app.get_webview_panel(PANEL_LABEL).unwrap();
 
                         if panel.is_visible() {
                             panel.order_out(None);

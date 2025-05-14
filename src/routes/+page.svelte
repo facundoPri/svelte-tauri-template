@@ -8,7 +8,7 @@
 
   async function greet(event: Event) {
     event.preventDefault();
-    console.log("greet");
+    greetMsg = await invoke("greet", { name });
   }
 </script>
 
